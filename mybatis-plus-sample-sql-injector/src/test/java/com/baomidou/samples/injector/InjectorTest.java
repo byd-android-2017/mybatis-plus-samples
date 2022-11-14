@@ -18,13 +18,13 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @SpringBootTest
-public class InjectorTest {
+class InjectorTest {
 
     @Resource
     private StudentMapper studentMapper;
 
     @Test
-    public void test() {
+    void test() {
         log.error("--------------------------------------insert-------------------------------------------------------");
         List<Long> ids = Lists.newArrayList();
         for (int i = 0; i < 2; i++) {
