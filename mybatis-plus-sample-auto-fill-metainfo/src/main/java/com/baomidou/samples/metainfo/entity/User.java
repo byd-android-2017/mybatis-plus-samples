@@ -2,6 +2,7 @@ package com.baomidou.samples.metainfo.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,15 +17,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
-    
+
+    @TableId
     private Long id;
-    
+
     private String name;
-    
+
     private Integer age;
-    
+
     private String email;
-    
-    @TableField(fill = FieldFill.INSERT_UPDATE)
+
+    @TableField( fill = FieldFill.INSERT_UPDATE)
     private String operator;
+
 }

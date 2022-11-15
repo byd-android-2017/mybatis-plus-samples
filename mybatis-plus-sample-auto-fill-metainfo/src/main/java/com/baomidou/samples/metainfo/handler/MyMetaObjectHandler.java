@@ -17,12 +17,12 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
         log.info("start insert fill ....");
-        this.strictInsertFill(metaObject, "operator", String.class, "Jetty");
+        this.strictInsertFill(metaObject, "operator", () -> "Jetty", String.class);
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
         log.info("start update fill ....");
-        this.strictUpdateFill(metaObject, "operator", String.class, "Tom");
+        this.strictUpdateFill(metaObject, "operator", () -> "Tom", String.class);
     }
 }
