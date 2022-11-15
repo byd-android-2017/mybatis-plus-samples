@@ -16,5 +16,4 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class BaseEntity {
   private Long id;
-
 }

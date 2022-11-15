@@ -18,13 +18,13 @@ public enum GradeEnum {
     SECONDORY(2, "中学"),
     HIGH(3, "高中");
 
-    GradeEnum(int code, String descp) {
+    GradeEnum(int code, String desc) {
         this.code = code;
-        this.descp = descp;
+        this.desc = desc;
     }
 
     @EnumValue
     private final int code;
-    private final String descp;
+    private final String desc;
 
 }

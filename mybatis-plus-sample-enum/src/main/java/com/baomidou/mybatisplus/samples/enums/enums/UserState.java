@@ -18,11 +18,11 @@ public enum UserState implements IBaseEnum<Integer> {
     INACTIVE(2, "I");
 
     private final int state;
-    private final String descp;
+    private final String desc;
 
-    UserState(int state, String descp) {
+    UserState(int state, String desc) {
         this.state = state;
-        this.descp = descp;
+        this.desc = desc;
 
     }
 
@@ -33,6 +33,6 @@ public enum UserState implements IBaseEnum<Integer> {
 
     @Override
     public String getDescription() {
-        return descp;
+        return desc;
     }
 }

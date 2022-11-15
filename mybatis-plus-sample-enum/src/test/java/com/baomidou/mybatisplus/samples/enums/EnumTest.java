@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.samples.enums.entity.User;
 import com.baomidou.mybatisplus.samples.enums.enums.*;
 import com.baomidou.mybatisplus.samples.enums.mapper.UserMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,29 +24,31 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @since 2018-08-11
  */
 @SpringBootTest
-public class EnumTest {
+@Slf4j
+class EnumTest {
     @Resource
     private UserMapper mapper;
-    
+
     @Test
-    public void selectXML() {
+    void selectXML() {
         User user = mapper.selectLinkById(1L);
-        System.out.println(user);
-        Assertions.assertNotNull(user);
+        log.info(user.toString());
+        assertThat(user).isNotNull();
     }
 
     @Test
-    public void insert() {
-        User user = new User();
-        user.setName("K神");
-        user.setAge(AgeEnum.ONE);
-        user.setGrade(GradeEnum.HIGH);
-        user.setGender(GenderEnum.MALE);
-        user.setStrEnum(StrEnum.ONE);
-        user.setEmail("abc@mp.com");
+    void insert() {
+        User user = new User()
+            .setName("K神")
+            .setAge(AgeEnum.ONE)
+            .setGrade(GradeEnum.HIGH)
+            .setGender(GenderEnum.MALE)
+            .setStrEnum(StrEnum.ONE)
+            .setEmail("abc@mp.com");
         Assertions.assertTrue(mapper.insert(user) > 0);
+
         // 成功直接拿回写的 ID
-        System.err.println("\n插入成功 ID 为：" + user.getId());
+        log.info("\n插入成功 ID 为：{}", user.getId());
 
         List<User> list = mapper.selectList(null);
         for (User u : list) {
@@ -60,20 +63,21 @@ public class EnumTest {
     }
 
     @Test
-    public void delete() {
+    void delete() {
         Assertions.assertTrue(mapper.delete(new QueryWrapper<User>()
                 .lambda().eq(User::getAge, AgeEnum.TWO)) > 0);
     }
 
     @Test
-    public void update() {
+    void update() {
         Assertions.assertTrue(mapper.update(new User().setAge(AgeEnum.TWO),
                 new QueryWrapper<User>().eq("age", AgeEnum.THREE)) > 0);
     }
 
     @Test
-    public void select() {
-        User user = mapper.selectOne(new QueryWrapper<User>().lambda().eq(User::getId, 2));
+    void select() {
+        User user = mapper.selectOne(new QueryWrapper<User>().lambda()
+            .eq(User::getId, 2));
         Assertions.assertEquals("Jack", user.getName());
         Assertions.assertSame(AgeEnum.THREE, user.getAge());
 
@@ -84,6 +88,6 @@ public class EnumTest {
         Optional<User> userOptional = userList.stream()
                 .filter(x -> x.getId() == 1)
                 .findFirst();
-        userOptional.ifPresent(user1 -> Assertions.assertSame(user1.getUserState(), UserState.ACTIVE));
+        userOptional.ifPresent(user1 -> Assertions.assertSame(UserState.ACTIVE, user1.getUserState()));
     }
 }
