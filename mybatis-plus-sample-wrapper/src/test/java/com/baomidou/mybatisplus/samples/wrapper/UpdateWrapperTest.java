@@ -13,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @since 2021-02-04
  */
 @SpringBootTest
-public class UpdateWrapperTest {
+class UpdateWrapperTest {
 
     @Autowired
     private UserMapper userMapper;
@@ -22,41 +22,43 @@ public class UpdateWrapperTest {
      * UPDATE user SET age=?, email=? WHERE (name = ?)
      */
     @Test
-    public void tests() {
+    void testUpdateSql() {
 
         //方式一：
         User user = new User();
         user.setAge(29);
         user.setEmail("test3update@baomidou.com");
 
-        userMapper.update(user,new UpdateWrapper<User>().eq("name","Tom"));
+        userMapper.update(user, new UpdateWrapper<User>().eq("name", "Tom"));
 
         //方式二：
         //不创建User对象
-        userMapper.update(null,new UpdateWrapper<User>()
-                .set("age",29).set("email","test3update@baomidou.com").eq("name","Tom"));
+        userMapper.update(null, new UpdateWrapper<User>()
+            .set("age", 29)
+            .set("email", "test3update@baomidou.com")
+            .eq("name", "Tom"));
 
     }
 
     /**
-     * 使用lambda条件构造器
-     * UPDATE user SET age=?, email=? WHERE (name = ?)
+     * 使用lambda条件构造器 UPDATE user SET age=?, email=? WHERE (name = ?)
      */
     @Test
-    public void testLambda() {
+    void testLambdaUpdateSql() {
 
         //方式一：
         User user = new User();
         user.setAge(29);
         user.setEmail("test3update@baomidou.com");
 
-        userMapper.update(user,new LambdaUpdateWrapper<User>().eq(User::getName,"Tom"));
+        userMapper.update(user, new LambdaUpdateWrapper<User>().eq(User::getName, "Tom"));
 
         //方式二：
         //不创建User对象
-        userMapper.update(null,new LambdaUpdateWrapper<User>()
-                .set(User::getAge,29).set(User::getEmail,"test3update@baomidou.com").eq(User::getName,"Tom"));
-
+        userMapper.update(null, new LambdaUpdateWrapper<User>()
+            .set(User::getAge, 29)
+            .set(User::getEmail, "test3update@baomidou.com")
+            .eq(User::getName, "Tom"));
     }
 
 
