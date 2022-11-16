@@ -1,5 +1,6 @@
 package com.baomidou.mybatisplus.samples.deluxe.mapper;
 
+import com.baomidou.mybatisplus.core.toolkit.Constants;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -23,8 +24,8 @@ public interface UserMapper extends MyBaseMapper<User> {
      */
     UserPage selectUserPage(UserPage userPage);
 
-    List<User> findList(@Param("user") User user);
+    List<User> findList(@Param(Constants.ENTITY) User user);
 
-    List<User> customerSqlSegment(@Param("ew") Wrapper ew);
+    List<User> customerSqlSegment(@Param(Constants.WRAPPER) Wrapper<User> ew);
 
 }

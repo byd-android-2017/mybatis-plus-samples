@@ -1,5 +1,7 @@
 package com.baomidou.mybatisplus.samples.deluxe.config;
 
+
+import com.baomidou.mybatisplus.core.toolkit.Constants;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -25,5 +27,5 @@ public interface MyBaseMapper<T> extends BaseMapper<T> {
      * @param batchList
      * @return
      */
-    int mysqlInsertAllBatch(@Param("list") List<T> batchList);
+    int mysqlInsertAllBatch(@Param(Constants.LIST) List<T> batchList);
 }

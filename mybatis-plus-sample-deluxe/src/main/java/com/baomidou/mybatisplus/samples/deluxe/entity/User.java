@@ -24,6 +24,7 @@ public class User {
     private Long id;
     private String name;
     private Integer age;
+
     @TableField(typeHandler = TestTypeHandler.class)
     private String email;
 

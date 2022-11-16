@@ -20,6 +20,7 @@ public class User {
     private String name;
     private Integer age;
     private String email;
+
     @TableField(exist = false)
     private String ignoreColumn = "ignoreColumn";
 
