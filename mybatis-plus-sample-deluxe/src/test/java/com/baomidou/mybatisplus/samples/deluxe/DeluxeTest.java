@@ -42,7 +42,7 @@ class DeluxeTest {
         outputPageContent(userPage);
     }
 
-    private void outputPageContent(IPage page) {
+    private <T> void outputPageContent(IPage<T> page) {
         log.info("总条数 ------> {}", page.getTotal());
         log.info("当前页数 ------> {}", page.getCurrent());
         log.info("当前每页显示数 ------> {}", page.getSize());
