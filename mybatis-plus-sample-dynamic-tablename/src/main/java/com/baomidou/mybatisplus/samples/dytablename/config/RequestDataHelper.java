@@ -8,6 +8,7 @@ import java.util.Map;
  * 请求参数传递辅助类
  */
 public class RequestDataHelper {
+    private RequestDataHelper() {}
     /**
      * 请求参数存取
      */
@@ -28,6 +29,7 @@ public class RequestDataHelper {
      * @param param 请求参数
      * @return 请求参数 MAP 对象
      */
+    @SuppressWarnings("unused, unchecked")
     public static <T> T getRequestData(String param) {
         Map<String, Object> dataMap = getRequestData();
         if (CollectionUtils.isNotEmpty(dataMap)) {
@@ -43,5 +45,9 @@ public class RequestDataHelper {
      */
     public static Map<String, Object> getRequestData() {
         return REQUEST_DATA.get();
+    }
+
+    public static void unload() {
+        REQUEST_DATA.remove();
     }
 }
